@@ -1,0 +1,71 @@
+src/
+│
+├── config/
+│   ├── passport/
+│   │   ├── index.mjs              # Registers all passport strategies
+│   │   ├── jwt.strategy.mjs       # JWT authentication for app users
+│   │   ├── local.strategy.mjs     # Email/password login
+│   │   └── refresh.strategy.mjs   # Refresh token validation
+│   │
+│   ├── db.mjs                     # Database connection (Mongo/Postgres)
+│   ├── session.mjs                # Express session config (if needed)
+│   ├── roles.mjs                  # Role definitions (admin, user, etc.)
+│   └── env.mjs                    # Loads and validates environment variables
+│
+├── controllers/
+│   ├── auth.controller.mjs        # Login, register, refresh tokens
+│   ├── user.controller.mjs        # Profile management
+│   ├── inference.controller.mjs   # Receive & fetch inference results
+│   ├── device.controller.mjs      # Register & manage IoT devices
+│   ├── telemetry.controller.mjs   # Receive sensor data from IoT devices
+│   ├── dashboard.controller.mjs   # Aggregated stats for admin/app dashboard
+│   └── admin.controller.mjs       # System-level actions
+│
+├── middleware/
+│   ├── auth.middleware.mjs        # Verifies JWT for app users
+│   ├── deviceAuth.middleware.mjs  # Validates IoT device API key
+│   ├── role.middleware.mjs        # Role-based access control
+│   ├── error.middleware.mjs       # Centralized error handler
+│   ├── rateLimit.middleware.mjs   # Protects auth & telemetry endpoints
+│   └── audit.middleware.mjs       # Logs critical operations
+│
+├── models/
+│   ├── User.mjs                   # App users (admin, standard users)
+│   ├── Inference.mjs              # Stores inference results
+│   ├── Device.mjs                 # Registered IoT devices
+│   ├── Telemetry.mjs              # Sensor readings from devices
+│   ├── RefreshToken.mjs           # Stores refresh tokens (if DB-based)
+│   └── AuditLog.mjs               # Security and activity logs
+│
+├── routes/
+│   ├── auth.routes.mjs            # /api/auth/*
+│   ├── user.routes.mjs            # /api/users/*
+│   ├── inference.routes.mjs       # /api/inference/*
+│   ├── device.routes.mjs          # /api/devices/*
+│   ├── telemetry.routes.mjs       # /api/telemetry/*
+│   └── admin.routes.mjs           # /api/admin/*
+│
+├── services/
+│   ├── auth.service.mjs           # Business logic for authentication
+│   ├── inference.service.mjs      # Business logic for inference handling
+│   ├── device.service.mjs         # Device registration & key generation
+│   ├── telemetry.service.mjs      # Telemetry validation & processing
+│   └── dashboard.service.mjs      # Aggregation & analytics logic
+│
+├── utils/
+│   ├── jwt.mjs                    # JWT sign / verify helpers
+│   ├── password.mjs               # Hash & compare passwords
+│   ├── validators.mjs             # Joi/Zod validation schemas
+│   ├── constants.mjs              # Status codes & system constants
+│   └── helper.mjs                 # General utility helpers
+│
+├── jobs/
+│   ├── cleanup.job.mjs            # Deletes expired tokens/old telemetry
+│   ├── alert.job.mjs              # Triggers alerts on threshold breaches
+│   └── analytics.job.mjs          # Scheduled aggregation tasks
+│
+├── .env                           # Environment variables
+├── .gitignore                     # Git exclusions
+├── package.json                   # Dependencies & scripts
+├── server.mjs                     # Express bootstrap & route mounting
+└── README.md                      # API documentation
