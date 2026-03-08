@@ -7,10 +7,10 @@ src/
 │   │   ├── local.strategy.mjs     # Email/password login
 │   │   └── refresh.strategy.mjs   # Refresh token validation
 │   │
-│   ├── db.mjs                     # Database connection (Mongo/Postgres)
-│   ├── session.mjs                # Express session config (if needed)
-│   ├── roles.mjs                  # Role definitions (admin, user, etc.)
-│   └── env.mjs                    # Loads and validates environment variables
+│   ├── db.   mjs                     # Database connection (Mongo/Postgres)
+│   
+│   
+│   
 │
 ├── controllers/
 │   ├── auth.controller.mjs        # Login, register, refresh tokens
@@ -26,8 +26,7 @@ src/
 │   ├── deviceAuth.middleware.mjs  # Validates IoT device API key
 │   ├── role.middleware.mjs        # Role-based access control
 │   ├── error.middleware.mjs       # Centralized error handler
-│   ├── rateLimit.middleware.mjs   # Protects auth & telemetry endpoints
-│   └── audit.middleware.mjs       # Logs critical operations
+│   
 │
 ├── models/
 │   ├── User.mjs                   # App users (admin, standard users)
@@ -35,7 +34,7 @@ src/
 │   ├── Device.mjs                 # Registered IoT devices
 │   ├── Telemetry.mjs              # Sensor readings from devices
 │   ├── RefreshToken.mjs           # Stores refresh tokens (if DB-based)
-│   └── AuditLog.mjs               # Security and activity logs
+│   
 │
 ├── routes/
 │   ├── auth.routes.mjs            # /api/auth/*
@@ -45,13 +44,6 @@ src/
 │   ├── telemetry.routes.mjs       # /api/telemetry/*
 │   └── admin.routes.mjs           # /api/admin/*
 │
-├── services/
-│   ├── auth.service.mjs           # Business logic for authentication
-│   ├── inference.service.mjs      # Business logic for inference handling
-│   ├── device.service.mjs         # Device registration & key generation
-│   ├── telemetry.service.mjs      # Telemetry validation & processing
-│   └── dashboard.service.mjs      # Aggregation & analytics logic
-│
 ├── utils/
 │   ├── jwt.mjs                    # JWT sign / verify helpers
 │   ├── password.mjs               # Hash & compare passwords
@@ -60,7 +52,6 @@ src/
 │   └── helper.mjs                 # General utility helpers
 │
 ├── jobs/
-│   ├── cleanup.job.mjs            # Deletes expired tokens/old telemetry
 │   ├── alert.job.mjs              # Triggers alerts on threshold breaches
 │   └── analytics.job.mjs          # Scheduled aggregation tasks
 │
