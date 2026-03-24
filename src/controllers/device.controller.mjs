@@ -21,7 +21,7 @@
 // }
 
 import Device from "../models/Device.mjs"
-import {validateDeviceInput} from "../utils/validators.mjs"
+import {registerDeviceSchema} from "../utils/validators.mjs"
 
 // register a new  device 
 
@@ -32,7 +32,7 @@ export const registerDevice = async (req, res, next) => {
 
     // validate device input
 
-    const validation = validateDeviceInput({ name, serialnumber, location, deviceType })
+    const validation = registerDeviceSchema.validate({ name, serialnumber, location, deviceType })
 
     if (!validation.valid) {
       return res.status(400).json({ success: false, message: validation.error })

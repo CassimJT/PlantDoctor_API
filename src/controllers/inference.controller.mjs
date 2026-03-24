@@ -26,6 +26,8 @@
 import Inference from "../models/Inference.mjs"
 
 
+// Create new inference and broadcast
+
 export const createInference = async (req, res, next) => {
   try {
     const { device, result, confidence, timestamp } = req.body
@@ -40,14 +42,18 @@ export const createInference = async (req, res, next) => {
   }
 }
 
+// Get all inferences with device info
+
 export const listInferences = async (req, res, next) => {
   try{
-    const inferences = await Inference.populate().sort({ createdAt: -1 }).limit(50)
+    const inferences = await Inference.find().populate("device").sort({ createdAt: -1 }).limit(50)
     res.json({inferences})
   } catch (error) {
     next(error)
   }
 }
+
+// Get single inference by ID
 
 export const getInference = async (req, res, next) => {
   try {
@@ -55,9 +61,9 @@ export const getInference = async (req, res, next) => {
     if (!inference) {
       return res.status(404).json({ error: "Inference not found" })
     }
-    res.json({
-      id: inference._id,
-      device: inference.device,
-      result: inference.result,
-      confidence: inference.confidence,
-      timestamp: inference.createdAt
+    res.json({inferences})
+  } catch (error) {
+    next(error)
+  }
+}
+

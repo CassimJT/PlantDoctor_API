@@ -1,30 +1,3 @@
-// // src/controllers/telemetry.controller.mjs
-
-// export const receiveTelemetry = async (req, res, next) => {
-//   try {
-//     const { device, value, unit } = req.body
-//     // Save telemetry to DB (MVP example)
-//     // const newTelemetry = await Telemetry.create({ device, value, unit })
-
-//     // Emit event to all clients
-//     const io = req.app.get("io")
-//     io.emit("telemetry:update", { device, value, unit })
-
-//     res.json({ message: "Telemetry received and broadcasted" })
-//   } catch (error) {
-//     next(error)
-//   }
-// }
-
-// export const getDeviceTelemetry = async (req, res, next) => {
-//   res.json({ message: `get telemetry for device ${req.params.id}` })
-// }
-
-// export const listTelemetry = async (req, res, next) => {
-//   res.json({ message: "list all telemetry endpoint" })
-// }
-
-// src/controllers/telemetry.controller.mjs
 
 import Telemetry from "../models/Telemetry.mjs"
 import Device from "../models/Device.mjs"
@@ -46,6 +19,7 @@ export const receiveTelemetry = async (req, res, next) => {
     }
 
     // Save telemetry to DB
+
     const newTelemetry = new Telemetry({
       device: device._id,
       value,
@@ -54,6 +28,7 @@ export const receiveTelemetry = async (req, res, next) => {
     await newTelemetry.save()
 
     // Emit event to all clients
+
     const io = req.app.get("io")
     io.emit("telemetry:update", { device: device._id, value, unit, timestamp: newTelemetry.timestamp })
 
@@ -72,20 +47,24 @@ export const getDeviceTelemetry = async (req, res, next) => {
     const skip = (page - 1) * limit
 
     // Check if device exists and user owns it or is admin
+
     const device = await Device.findById(deviceId)
     if (!device) {
       return res.status(404).json({ error: "Device not found" })
     }
 
     // Assuming user can access their own devices' telemetry
+
     if (device.owner.toString() !== userId && !req.user.roles.includes('admin')) {
       return res.status(403).json({ error: "Access denied" })
     }
 
     // Get telemetry count
+
     const total = await Telemetry.countDocuments({ device: deviceId })
 
     // Get paginated telemetry
+
     const telemetry = await Telemetry.find({ device: deviceId })
       .sort({ timestamp: -1 })
       .skip(skip)
@@ -113,9 +92,11 @@ export const listTelemetry = async (req, res, next) => {
     const skip = (page - 1) * limit
 
     // Get total count
+
     const total = await Telemetry.countDocuments()
 
     // Get paginated telemetry
+    
     const telemetry = await Telemetry.find()
       .populate('device', 'name location')
       .sort({ timestamp: -1 })
