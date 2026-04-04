@@ -1,7 +1,26 @@
-// src/controllers/user.controller.mjs
+// // src/controllers/user.controller.mjs
+
+// export const getProfile = async (req, res, next) => {
+//   res.json({ message: "get profile endpoint" })
+// }
+
+// export const updateProfile = async (req, res, next) => {
+//   res.json({ message: "update profile endpoint" })
+// }
+
+// export const listUsers = async (req, res, next) => {
+//   res.json({ message: "list users endpoint" })
+// }
+
+// export const deleteUser = async (req, res, next) => {
+//   res.json({ message: "delete user endpoint" })
+// }
+
 
 import User from "../models/User.mjs"
 import { hashPassword } from "../utils/password.mjs"
+
+// get user profile
 
 export const getProfile = async (req, res, next) => {
   try {
@@ -23,6 +42,8 @@ export const getProfile = async (req, res, next) => {
   }
 }
 
+ // update user profile
+ 
 export const updateProfile = async (req, res, next) => {
   try {
     const userId = req.user?.id || req.user?._id
