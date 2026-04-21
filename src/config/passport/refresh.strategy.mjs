@@ -5,8 +5,8 @@ import User from "../../models/User.mjs"
 dotenv.config()
 
 const options = {
-jwtFromRequest: ExtractJwt.fromBodyField("refreshToken"),
-secretOrKey: process.env.JWT_REFRESH_SECRET
+  jwtFromRequest: ExtractJwt.fromBodyField("refreshToken"),
+  secretOrKey: process.env.JWT_REFRESH_SECRET
 }
 
 const refreshStrategy = new JwtStrategy(options, async (payload, done) => {

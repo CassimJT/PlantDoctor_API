@@ -6,6 +6,7 @@ import connectDB from "./config/db.mjs"
 import passport from "./config/passport/index.mjs"
 import { initializeSocket } from "./utils/socket.mjs"
 
+
 // Import routes
 import authRoutes from "./routes/auth.routes.mjs"
 import userRoutes from "./routes/user.routes.mjs"
@@ -14,6 +15,7 @@ import telemetryRoutes from "./routes/telemetry.routes.mjs"
 import inferenceRoutes from "./routes/inference.routes.mjs"
 import adminRoutes from "./routes/admin.routes.mjs"
 import dashboardRoutes from "./routes/dashboard.routes.mjs"
+
 
 dotenv.config()
 connectDB()
@@ -27,6 +29,7 @@ const io = new SocketIOServer(server, {
 // Middleware
 app.use(express.json())
 app.use(passport.initialize())
+app.use(passport.session())
 
 // Mount routes
 app.use("/api/auth", authRoutes)

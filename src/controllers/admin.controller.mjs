@@ -17,6 +17,8 @@ import User from "../models/User.mjs"
 import Device from "../models/Device.mjs"
 import Inference from "../models/Inference.mjs"
 
+// system stats
+
 export const getSystemStats = async (req, res, next) => {
   try {
     const userCount = await User.countDocuments()
@@ -29,6 +31,7 @@ export const getSystemStats = async (req, res, next) => {
   }
 }
 
+// list all devices 
 export const listAllDevices = async (req, res, next) => {
   try {
     const devices = await Device.find().populate('owner', 'firstName lastName emailAddress')
@@ -39,6 +42,7 @@ export const listAllDevices = async (req, res, next) => {
   }
 }
 
+// list all inferences
 export const listAllInferences = async (req, res, next) => {
   try {
     const inferences = await Inference.find().populate('device', 'name location')
