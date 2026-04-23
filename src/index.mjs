@@ -29,7 +29,7 @@ const io = new SocketIOServer(server, {
 // Middleware
 app.use(express.json())
 app.use(passport.initialize())
-app.use(passport.session())
+//app.use(passport.session())
 
 // Mount routes
 app.use("/api/auth", authRoutes)
