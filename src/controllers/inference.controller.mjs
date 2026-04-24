@@ -120,7 +120,7 @@ export const createBatchInferences = async (req, res, next) => {
 export const listInferences = async (req, res, next) => {
   try {
     // query parameters for filtering
-    const { disease, location, limit = 50, page = 1 } = req.query
+    const { disease, location, limit = 200, page = 1 } = req.query
     
     let query = {}
     if (disease) query.diseasname = disease
