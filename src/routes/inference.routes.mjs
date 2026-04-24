@@ -11,7 +11,7 @@ router.post("/",inferenceController.createInference)
 router.post("/batch", inferenceController.createBatchInferences)
 
 // List all inference results
-router.get("/", authMiddleware, roleMiddleware("admin", "superadmin"), inferenceController.listInferences)
+router.get("/",inferenceController.listInferences)
 
 // Get inference by ID
 router.get("/:id", authMiddleware, inferenceController.getInference)
